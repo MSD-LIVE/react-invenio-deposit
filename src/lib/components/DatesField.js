@@ -17,7 +17,7 @@ import {
 import { Button, Form, Icon } from 'semantic-ui-react';
 
 import { emptyDate } from '../record';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { sortOptions } from '../utils';
 
 export class DatesField extends Component {

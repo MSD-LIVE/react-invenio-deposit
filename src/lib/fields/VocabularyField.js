@@ -24,19 +24,19 @@ export class VocabularyField extends Field {
 
   /**
    * Deserializes a given record.
-   * 
-   * @param {object} record The record to be deserialized. 
-   * 
+   *
+   * @param {object} record The record to be deserialized.
+   *
    * @returns {object} Returns a deep copy of the given record, deserialized using the provided settings.
    */
   deserialize(record) {
     /**
-     * Deserializes an object. 
-     * 
-     * If the object contains an id, its returned as-is. 
-     * 
+     * Deserializes an object.
+     *
+     * If the object contains an id, its returned as-is.
+     *
      * @param {object} value The object to be deserialized.
-     * 
+     *
      * @returns {(object|*)} Returns a clone of the given object or its 'id' property, if exists.
      */
     const _deserialize = (value) => {
@@ -89,6 +89,17 @@ export class VocabularyField extends Field {
 }
 
 export class AllowAdditionsVocabularyField extends VocabularyField {
+  // MSD-LIVE CHANGE had to add constructor otherwise rdm had js errors - try reverting after upgrade
+  constructor({
+    fieldpath,
+    deserializedDefault = null,
+    serializedDefault = null,
+    localeFields = [],
+  }) {
+    super({ fieldpath, deserializedDefault, serializedDefault });
+    this.localeFields = localeFields;
+  }
+
   deserialize(record) {
     const fieldValue = _get(record, this.fieldpath, this.deserializedDefault);
     // We deserialize the values in the format
@@ -226,20 +237,20 @@ export class FundingField extends Field {
 
   /**
    * Deserializes a funding record.
-   * 
-   * @param {object} record the funding record to be deserialized. 
-   * 
+   *
+   * @param {object} record the funding record to be deserialized.
+   *
    * @returns {object} the deserialized record.
    */
   deserialize(record) {
     /**
      * Deserializes a record. In case the record contains a 'title' property, it will extract its 'en' property.
-     * 
+     *
      * @param {object} value The object to be deserialized.
-     * 
-     * @todo record's title is deserialized reading an 'en' locale. This needs to take into account the current locale or pass that 
+     *
+     * @todo record's title is deserialized reading an 'en' locale. This needs to take into account the current locale or pass that
      * responsability to backend.
-     * 
+     *
      * @returns {(object|*)} Returns a deep copy of the given object.
      */
     const _deserialize = (value) => {
@@ -288,20 +299,20 @@ export class FundingField extends Field {
 
   /**
    * Serializes a funding record.
-   * 
-   * @param {object} record 
-   * 
+   *
+   * @param {object} record
+   *
    * @returns
    */
   serialize(record) {
     /**
      * Serializes a record. Either returns a new object with the record's id or returns a deep copy of the record.
-     * 
+     *
      * @param {object} value
-     * 
-     * @todo record's title is serialized forcing an 'en' locale. This needs to take into account the current locale or pass that 
+     *
+     * @todo record's title is serialized forcing an 'en' locale. This needs to take into account the current locale or pass that
      * responsability to backend.
-     *  
+     *
      * @returns an object containing the record's id, if it has an 'id' property.
      */
     const _serialize = (value) => {

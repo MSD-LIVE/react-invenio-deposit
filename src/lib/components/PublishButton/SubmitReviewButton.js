@@ -6,7 +6,7 @@
 // under the terms of the MIT License; see LICENSE file for more details.
 
 import React, { Component } from 'react';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 import _get from 'lodash/get';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';

@@ -16,7 +16,7 @@ import { FieldLabel } from 'react-invenio-forms';
 import { FundingFieldItem } from './FundingFieldItem';
 import FundingModal from './FundingModal';
 
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 function FundingFieldForm(props) {
   const {

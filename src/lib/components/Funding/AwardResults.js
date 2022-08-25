@@ -8,7 +8,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _get from 'lodash/get';
-import { Item, Header, Radio, Label } from 'semantic-ui-react';
+// MSD-LIVE RDM bug fix, Icon used below but not imported
+import { Item, Header, Radio, Label, Icon } from 'semantic-ui-react';
 import { withState } from 'react-searchkit';
 import { FastField } from 'formik';
 

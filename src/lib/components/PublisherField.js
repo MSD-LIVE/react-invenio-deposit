@@ -10,7 +10,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { FieldLabel, TextField } from 'react-invenio-forms';
-import { i18next } from '@translations/i18next';
 
 export class PublisherField extends Component {
   render() {
@@ -19,9 +18,10 @@ export class PublisherField extends Component {
     return (
       <TextField
         fieldPath={fieldPath}
-        helpText={i18next.t(
-          'The publisher is used to formulate the citation, so consider the prominence of the role.'
-        )}
+        // MSD-LIVE CHANGE changed helpText
+        helpText={
+          'In case your upload was already published elsewhere, please use the publisher of the first publication (e.g., Springer).'
+        }
         label={
           <FieldLabel htmlFor={fieldPath} icon={labelIcon} label={label} />
         }
@@ -40,7 +40,7 @@ PublisherField.propTypes = {
 
 PublisherField.defaultProps = {
   fieldPath: 'metadata.publisher',
-  label: i18next.t('Publisher'),
+  label: 'Publisher',
   labelIcon: 'building outline',
-  placeholder: i18next.t('Enter publisher name'),
+  placeholder: 'Publisher',
 };

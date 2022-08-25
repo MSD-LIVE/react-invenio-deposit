@@ -6,7 +6,7 @@
 // React-Invenio-Deposit is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -43,7 +43,12 @@ const ModalActions = {
 const LicenseSchema = Yup.object().shape({
   selectedLicense: Yup.object().shape({
     title: Yup.string().required(i18next.t('Title is a required field.')),
-    link: Yup.string().url(i18next.t('Link must be a valid URL')),
+    //MSD-LIVE added more words to error message as changing the validator here would pass UI validation but back end would still fail
+    link: Yup.string().url(i18next.t('Link must be a valid URL (and start with http:// or https://)')),
+    // link: Yup.string().matches(
+    //         /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+    //         'Enter a valid url'
+    //     )
   }),
 });
 

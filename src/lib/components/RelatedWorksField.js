@@ -20,7 +20,7 @@ import { Button, Form, Icon } from 'semantic-ui-react';
 
 import { emptyRelatedWork } from '../record';
 import { ResourceTypeField } from './ResourceTypeField';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 export class RelatedWorksField extends Component {
   render() {
@@ -29,8 +29,12 @@ export class RelatedWorksField extends Component {
     return (
       <>
         <label className="helptext" style={{ marginBottom: '10px' }}>
+            {/* MSD-LIVE Change:  Changed the helper text to be more meaningful. */}
           {i18next.t(
-            'Specify identifiers of related works. Supported identifiers include DOI, Handle, ARK, PURL, ISSN, ISBN, PubMed ID, PubMed Central ID, ADS Bibliographic Code, arXiv, Life Science Identifiers (LSID), EAN-13, ISTC, URNs, and URLs.'
+            'Specify other data sets that are related to this work. Related works highlight work done by others that ties in with this data. ' +
+              'It can include relationships such as work that this data is derived from or papers that have been written about this data.  ' +
+              'Related works can be specified by a variety of unique identifiers including DOI, ARK, PURL, ISSN, ISBN, URN, or URL.  ' +
+              'See the dropdown lists for the full list of supported relationships and identifiers.'
           )}
         </label>
         <ArrayField

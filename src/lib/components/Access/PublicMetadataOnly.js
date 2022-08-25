@@ -8,7 +8,7 @@
 import React from 'react';
 
 import { embargoSection, filesSection, MessageSection, MetadataSection } from './utils';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 // Public record no files
 export class PublicMetadataOnly {

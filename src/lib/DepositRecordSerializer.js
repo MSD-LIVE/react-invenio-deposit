@@ -18,13 +18,15 @@ import _pick from 'lodash/pick';
 import _pickBy from 'lodash/pickBy';
 import _set from 'lodash/set';
 import {
-  AllowAdditionsVocabularyField,
+  // AllowAdditionsVocabularyField,
   Field,
   FundingField,
   RightsVocabularyField,
   SchemaField,
   VocabularyField,
 } from './fields';
+//MSD-LIVE CHANGE import was not working when in the above, but this one did - maybe can revert after upgrade
+import {AllowAdditionsVocabularyField} from './fields/VocabularyField'
 import { emptyDate, emptyIdentifier, emptyRelatedWork } from './record';
 
 export class DepositRecordSerializer {

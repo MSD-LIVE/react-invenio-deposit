@@ -8,7 +8,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Icon, Button, Popup } from 'semantic-ui-react';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 const apiConfig = {
   withCredentials: true,

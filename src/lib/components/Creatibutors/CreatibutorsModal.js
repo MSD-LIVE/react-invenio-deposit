@@ -2,16 +2,18 @@
 // Copyright (C) 2021 CERN.
 // Copyright (C) 2021 Northwestern University.
 // Copyright (C) 2021 Graz University of Technology.
+// Copyright (C) 2022 data-futures.org.
 //
 // React-Invenio-Deposit is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 
+// MSD-LIVE CHANGE pulled in a newer version of this one component that fixes
+// RDM bug. After upgrade can discard all changes except the i18next imports AND changes having to do with orcid errors (there's a few)
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Grid, Header, Icon, Modal } from 'semantic-ui-react';
+import {Button, Form, Grid, Header, Icon, Modal} from 'semantic-ui-react';
 import { Formik } from 'formik';
 import {
-  ActionButton,
   Image,
   SelectField,
   TextField,
@@ -23,10 +25,12 @@ import _get from 'lodash/get';
 import _find from 'lodash/find';
 import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
-import { AffiliationsField } from './../AffiliationsField';
+import { AffiliationsField } from '../AffiliationsField';
 import { CreatibutorsIdentifiers } from './CreatibutorsIdentifiers';
 import { CREATIBUTOR_TYPE } from './type';
-import { i18next, Trans } from '@translations/i18next';
+// import { i18next, Trans } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
+import { Trans } from "../../../lib/i18next";
 
 const ModalActions = {
   ADD: 'add',
@@ -196,11 +200,46 @@ export class CreatibutorsModal extends Component {
     }
   };
 
+
+  makeIdEntry = (identifier) => {
+
+    let icon = null;
+    let link = null;
+    let linkTitle = null;
+
+    if (identifier.scheme == "orcid") {
+      icon = "/static/images/orcid.svg";
+      link = "https://orcid.org/" + identifier.identifier;
+    } else if (identifier.scheme == "gnd") {
+      icon = "/static/images/gnd-icon.svg";
+      link = "https://d-nb.info/gnd/" + identifier.identifier;
+    } else if (identifier.scheme == "ror") {
+      icon = "/static/images/ror-icon.svg";
+      link = "https://ror.org/" + identifier.identifier;
+    } else {
+      return (<>{identifier.scehme}: {identifier.identifier}</>);
+    }
+
+    return (
+      <span key={identifier.identifier}>
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src={icon}
+            className="inline-id-icon ml-5 mr-5"
+            verticalAlign="middle"
+          />
+          {identifier.identifier}
+        </a>;
+      </span>
+    );
+  }
+
   serializeSuggestions = (creatibutors) => {
     let results = creatibutors.map((creatibutor) => {
-      const orcid = _find(creatibutor.identifiers, (identifier) => {
-        return identifier.scheme === 'orcid';
-      });
 
       let aff_names = '';
       creatibutor.affiliations.forEach((affiliation, idx) => {
@@ -210,28 +249,21 @@ export class CreatibutorsModal extends Component {
         }
       });
 
+      let idString = [];
+      creatibutor.identifiers.forEach((i, idx) => {
+        idString.push(this.makeIdEntry(i));
+      });
+
       return {
         text: creatibutor.name,
-        value: orcid.identifier,
+        value: creatibutor.id,
         extra: creatibutor,
         key: creatibutor.id,
         content: (
           <Header>
             <Header.Content>
-              {creatibutor.name} (
-              <Image
-                src="/static/images/orcid.svg"
-                className="inline-id-icon"
-                verticalAlign="middle"
-              />
-              {orcid.identifier})
-              <a
-                href={`https://orcid.org/${orcid.identifier}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Icon link name="external alternate" className="spaced-left" />
-              </a>
+              {creatibutor.name}{" "}
+              {idString.length ? <>({idString})</> : null }
             </Header.Content>
             <Header.Subheader>{aff_names}</Header.Subheader>
           </Header>
@@ -346,7 +378,9 @@ export class CreatibutorsModal extends Component {
         validateOnChange={false}
         validateOnBlur={false}
       >
-        {({ values, resetForm }) => {
+        {(formikProps) => {
+          // MSD-LIVE CHANGE get at errors from formik props too
+          const { values, resetForm, handleSubmit, errors } = formikProps;
           const personOrOrgPath = `person_or_org`;
           const typeFieldPath = `${personOrOrgPath}.type`;
           const familyNameFieldPath = `${personOrOrgPath}.family_name`;
@@ -355,6 +389,8 @@ export class CreatibutorsModal extends Component {
           const identifiersFieldPath = `${personOrOrgPath}.identifiers`;
           const affiliationsFieldPath = 'affiliations';
           const roleFieldPath = 'role';
+          // MSD-LIVE CHANGE see if there's an error with identifiers (we added it if so) to determine if save buttons should be disabled
+          const hasOrcidErrors = _get(errors, identifiersFieldPath) !== undefined;
           return (
             <Modal
               centered={false}
@@ -453,8 +489,8 @@ export class CreatibutorsModal extends Component {
                               required={this.isCreator()}
                             />
                             <TextField
-                              label={i18next.t('Given name(s)')}
-                              placeholder={i18next.t('Given name')}
+                              label={i18next.t('Given names')}
+                              placeholder={i18next.t('Given names')}
                               fieldPath={givenNameFieldPath}
                             />
                           </Form.Group>
@@ -524,10 +560,10 @@ export class CreatibutorsModal extends Component {
                 </Form>
               </Modal.Content>
               <Modal.Actions>
-                <ActionButton
+                <Button
                   name="cancel"
-                  onClick={(values, formikBag) => {
-                    formikBag.resetForm();
+                  onClick={() => {
+                    resetForm();
                     this.closeModal();
                   }}
                   icon="remove"
@@ -535,9 +571,9 @@ export class CreatibutorsModal extends Component {
                   floated="left"
                 />
                 {this.props.action === ModalActions.ADD && (
-                  <ActionButton
+                  <Button
                     name="submit"
-                    onClick={(event, formik) => {
+                    onClick={() => {
                       this.setState(
                         {
                           action: 'saveAndContinue',
@@ -546,18 +582,20 @@ export class CreatibutorsModal extends Component {
                             NamesAutocompleteOptions.SEARCH_ONLY,
                         },
                         () => {
-                          formik.handleSubmit();
+                          handleSubmit();
                         }
                       );
                     }}
                     primary
                     icon="checkmark"
                     content={this.state.saveAndContinueLabel}
+                    // MSD-LIVE CHAGE disable buttons if orcid is invalid
+                    disabled={hasOrcidErrors}
                   />
                 )}
-                <ActionButton
+                <Button
                   name="submit"
-                  onClick={(event, formik) => {
+                  onClick={() => {
                     this.setState(
                       {
                         action: 'saveAndClose',
@@ -565,12 +603,14 @@ export class CreatibutorsModal extends Component {
                           this.props.autocompleteNames !==
                           NamesAutocompleteOptions.SEARCH_ONLY,
                       },
-                      () => formik.handleSubmit()
+                      () => handleSubmit()
                     );
                   }}
                   primary
                   icon="checkmark"
                   content={i18next.t('Save')}
+                  // MSD-LIVE CHAGE disable buttons if orcid is invalid
+                  disabled={hasOrcidErrors}
                 />
               </Modal.Actions>
             </Modal>

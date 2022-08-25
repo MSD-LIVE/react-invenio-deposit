@@ -1,35 +1,49 @@
+// MSD-LIVE CHANGE - wording from community to project:
+// react-invenio-deposit\src\lib\components\DepositStatus\DepositStatusBox.js
+
 // This file is part of React-Invenio-Deposit
 // Copyright (C) 2022 CERN.
 //
 // React-Invenio-Deposit is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 
-import { i18next } from '@translations/i18next';
+// MSD-LIVE CHANGE changing how i18next gets imported
+// import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Grid, Icon, Popup } from 'semantic-ui-react';
 import { DepositStatus } from '../../state/reducers/deposit';
+
 
 const STATUSES = {
   [DepositStatus.IN_REVIEW]: {
     color: 'warning',
     title: i18next.t('In review'),
     message: i18next.t(
-      'Community curators will review your upload. Once accepted, it will be published.'
+      'Project curators will review your upload. Once accepted, it will be published.'
     ),
   },
+  //MSD-LIVE CHANGE let declined render same status as draft as we add our own red warning message
   [DepositStatus.DECLINED]: {
-    color: 'negative',
-    title: i18next.t('Declined'),
+    color: 'light grey',
+    title: i18next.t('Draft'),
     message: i18next.t(
-      'The request to submit this upload to the community was declined.'
+      'Once your upload is complete, you can publish or submit it for review to the project curators.'
     ),
   },
+  // [DepositStatus.DECLINED]: {
+  //   color: 'negative',
+  //   title: i18next.t('Declined'),
+  //   message: i18next.t(
+  //     'The request to submit this upload to the project was declined.'
+  //   ),
+  // },
   [DepositStatus.EXPIRED]: {
     color: 'light orange',
     title: i18next.t('Expired'),
     message: i18next.t(
-      'The request to submit this upload to the community has expired.'
+      'The request to submit this upload to the project has expired.'
     ),
   },
   [DepositStatus.PUBLISHED]: {
@@ -41,14 +55,14 @@ const STATUSES = {
     color: 'light grey',
     title: i18next.t('Draft'),
     message: i18next.t(
-      'Once your upload is complete, you can submit it for review to the community curators.'
+      'Once your upload is complete, you can submit it for review to the project curators.'
     ),
   },
   [DepositStatus.DRAFT]: {
     color: 'light grey',
     title: i18next.t('Draft'),
     message: i18next.t(
-      'Once your upload is complete, you can publish or submit it for review to the community curators.'
+      'Once your upload is complete, you can publish or submit it for review to the project curators.'
     ),
   },
   [DepositStatus.NEW_VERSION_DRAFT]: {

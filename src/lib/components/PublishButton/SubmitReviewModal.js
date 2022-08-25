@@ -4,7 +4,7 @@
 // Invenio RDM Records is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { Formik } from 'formik';
 import _get from 'lodash/get';
 import PropTypes from 'prop-types';
@@ -116,9 +116,10 @@ export class SubmitReviewModal extends Component {
                     <RadioField
                       control={Checkbox}
                       fieldPath="acceptAfterPublishRecord"
+                      // MSD-LIVE CHANGE label changed from community curators to project curators
                       label={
                         <Trans
-                          defaults="If your upload is accepted by the community curators, it will be <bold> immediately published.</bold> Before that, you will still be able to modify metadata and files of this uploads."
+                          defaults="If your upload is accepted by the project curators, it will be <bold> immediately published.</bold> Before that, you will still be able to modify metadata and files of this upload."
                           values={{
                             communityTitle: communityTitle,
                           }}

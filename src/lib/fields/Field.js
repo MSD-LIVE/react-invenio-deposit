@@ -1,4 +1,4 @@
-// This file is part of React-Invenio-Deposit
+/// This file is part of React-Invenio-Deposit
 // Copyright (C) 2020 CERN.
 // Copyright (C) 2020 Northwestern University.
 //
@@ -11,11 +11,11 @@ import _cloneDeep from 'lodash/cloneDeep';
 
 export class Field {
   constructor({
-    fieldpath,
-    deserializedDefault = null,
-    serializedDefault = null,
-    allowEmpty = false,
-  }) {
+                fieldpath,
+                deserializedDefault = null,
+                serializedDefault = null,
+                allowEmpty = false,
+              }) {
     this.fieldpath = fieldpath;
     this.deserializedDefault = deserializedDefault;
     this.serializedDefault = serializedDefault;

@@ -13,8 +13,8 @@ import {
   MessageSection,
   MetadataSection,
 } from './utils';
-import { i18next } from '@translations/i18next';
-import { Trans } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
+import { Trans } from "../../../lib/i18next";
 // Record and files restricted
 export class Restricted {
   constructor(embargo) {
@@ -44,7 +44,7 @@ export class Restricted {
     const text = (
       <Trans>
         The record and files can <b>only</b> be accessed by
-        <b> users specified</b> in the permissions.
+        <b> users on the same project team</b>.
       </Trans>
     );
 

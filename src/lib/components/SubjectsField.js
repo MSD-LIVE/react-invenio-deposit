@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { FieldLabel, GroupField, RemoteSelectField } from 'react-invenio-forms';
 import { Form } from 'semantic-ui-react';
 import { Field, getIn } from 'formik';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 export class SubjectsField extends Component {
   state = {

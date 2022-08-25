@@ -6,7 +6,7 @@
 // React-Invenio-Deposit is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 import React, { Component } from 'react';
 import { ActionButton } from 'react-invenio-forms';
 import { connect } from 'react-redux';
@@ -24,7 +24,11 @@ export class SaveButtonComponent extends Component {
   handleSave = (event, formik) => {
     this.context.setSubmitContext(DepositFormSubmitActions.SAVE);
     formik.handleSubmit(event);
-    scrollTop();
+    // MSD-LIVE CHANGE added timeout
+    //I'm not sure why this has to be in a timeout but it works as long as it is SIGH
+    setTimeout(function(){
+        scrollTop();
+    }, 200);
   };
 
   render() {

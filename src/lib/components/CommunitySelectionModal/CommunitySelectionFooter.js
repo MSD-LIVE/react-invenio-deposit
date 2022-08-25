@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { Container, Divider, Segment } from 'semantic-ui-react';
-import { Trans } from '@translations/i18next';
+import { Trans } from "../../../lib/i18next";
 
 export const CommunitySelectionFooter = () => {
   return (

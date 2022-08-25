@@ -42,13 +42,17 @@ export const emptyDate = {
   description: '',
   type: '',
 };
-
+//MSD-LIVE CHANGE none, must have come from bumped version
 export const emptyFunding = {
   funder: {
     name: '',
+    identifier: '',
+    scheme: '',
   },
   award: {
     title: '',
     number: '',
+    identifier: '',
+    scheme: '',
   },
 };

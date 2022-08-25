@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Form, Header } from 'semantic-ui-react';
 import { TextField, RemoteSelectField } from 'react-invenio-forms';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 import _isEmpty from 'lodash/isEmpty';
 
 function CustomAwardForm({ deserializeFunder, selectedFunding }) {

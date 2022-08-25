@@ -14,8 +14,8 @@ import {
   MessageSection,
   MetadataSection,
 } from './utils';
-import { i18next } from '@translations/i18next';
-import { Trans } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
+import { Trans } from "../../../lib/i18next";
 // Public record restricted files
 export class RestrictedFiles {
   constructor(embargo) {
@@ -39,7 +39,7 @@ export class RestrictedFiles {
     const text = (
       <Trans>
         The record is publicly accessible. The files can <b>only</b> be accessed
-        by <b>users specified</b> in the permissions.
+        by <b>users on the same project team</b>.
       </Trans>
     );
 

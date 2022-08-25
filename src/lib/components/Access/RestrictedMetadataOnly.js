@@ -6,8 +6,8 @@
 // React-Invenio-Deposit is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 import React from 'react';
-import { i18next } from '@translations/i18next';
-import { Trans } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
+import { Trans } from "../../../lib/i18next";
 import {
   embargoSection,
   filesSection,
@@ -43,8 +43,7 @@ export class RestrictedMetadataOnly {
   renderMessageSection() {
     const text = (
       <Trans>
-        The record can <b>only</b> be accessed by <b>users specified</b> in the
-        permissions.
+        The record can <b>only</b> be accessed by <b>users on the same project team</b>.
       </Trans>
     );
 

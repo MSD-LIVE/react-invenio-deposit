@@ -1,3 +1,7 @@
+// MSD-LIVE CHANGE just changing help text wording (and removed <Trans> wrapper component as we don't need translations)
+// copied from:
+// react-invenio-deposit\src\lib\components
+
 // This file is part of React-Invenio-Deposit
 // Copyright (C) 2020 CERN.
 // Copyright (C) 2020 Northwestern University.
@@ -10,8 +14,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { FieldLabel, RichInputField } from 'react-invenio-forms';
+//MSD-LIVE CHANGE using our version of add'l descriptions and corrected i18next import
 import { AdditionalDescriptionsField } from './AdditionalDescriptionsField';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 export class DescriptionsField extends Component {
   render() {

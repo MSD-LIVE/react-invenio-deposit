@@ -11,7 +11,7 @@ import {
   FieldLabel,
   TextField,
 } from 'react-invenio-forms';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 export function EmbargoDateField({ fieldPath, label, labelIcon, placeholder, required }) {
   return (

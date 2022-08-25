@@ -1,3 +1,7 @@
+// MSD-LIVE CHANGE just changing help text wording (and removed <Trans> wrapper component as we don't need translations)
+// copied from:
+// react-invenio-deposit\src\lib\components
+
 // This file is part of React-Invenio-Deposit
 // Copyright (C) 2020 CERN.
 // Copyright (C) 2020 Northwestern University.
@@ -10,22 +14,26 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { FieldLabel, TextField } from 'react-invenio-forms';
-import { i18next } from '@translations/i18next';
-import { Trans } from '@translations/i18next';
+// import { i18next } from '@translations/i18next';
+// import { Trans } from '@translations/i18next';
 export class VersionField extends Component {
   render() {
     const { fieldPath, label, labelIcon, placeholder } = this.props;
+    // MSD-LIVE CHANGE changed helpText
     const helpText = (
       <span>
-        <Trans>
-          Mostly relevant for software and dataset uploads. A semantic version
-          string is preferred see
-          <a href="https://semver.org/" target="_blank">
+          All uploads will be assigned a version number.  If you have
+a specific version number for your software or dataset, please enter it here.  Otherwise, a version number will be assigned
+automatically by the Data Repository.  See
+          <a
+            href="https://semver.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {' '}
             semver.org
           </a>
-          , but any version string is accepted.
-        </Trans>
+          {' '}for versioning guidance.
       </span>
     );
 
@@ -51,7 +59,7 @@ VersionField.propTypes = {
 
 VersionField.defaultProps = {
   fieldPath: 'metadata.version',
-  label: i18next.t('Version'),
+  label: 'Version',
   labelIcon: 'code branch',
   placeholder: '',
 };

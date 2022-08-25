@@ -1,3 +1,7 @@
+// MSD-LIVE CHANGE just changing help text wording (and removed <Trans> wrapper component as we don't need translations)
+// copied from:
+// react-invenio-deposit\src\lib\components
+
 // This file is part of React-Invenio-Deposit
 // Copyright (C) 2020 CERN.
 // Copyright (C) 2020-2022 Northwestern University.
@@ -10,10 +14,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Grid, Icon } from 'semantic-ui-react';
 
-import { ArrayField, SelectField, RichInputField } from 'react-invenio-forms';
+import { ArrayField, SelectField, RichInputField, FieldLabel } from 'react-invenio-forms';
 import { emptyAdditionalDescription } from '../record';
 import { LanguagesField } from './LanguagesField';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { sortOptions } from '../utils';
 
 export class AdditionalDescriptionsField extends Component {
@@ -21,10 +25,15 @@ export class AdditionalDescriptionsField extends Component {
     const { fieldPath, options, recordUI } = this.props;
     return (
       <ArrayField
-        addButtonLabel={i18next.t('Add description')}
+        addButtonLabel={i18next.t('Add Supporting Information')}
         defaultNewValue={emptyAdditionalDescription}
         fieldPath={fieldPath}
         className="additional-descriptions"
+        // MSD-LIVE change adding label and help text
+        label={
+            <FieldLabel htmlFor={fieldPath} icon={'pencil'} label={'Supporting Information'} />
+          }
+        helpText={'Add supporting information such as abstracts or methodologies to further explain your data.'}
       >
         {({ arrayHelpers, indexPath }) => {
           const fieldPathPrefix = `${fieldPath}.${indexPath}`;
@@ -36,7 +45,8 @@ export class AdditionalDescriptionsField extends Component {
                   <Grid.Column mobile={16} tablet={10} computer={12}>
                     <RichInputField
                       fieldPath={`${fieldPathPrefix}.description`}
-                      label={i18next.t('Additional Description')}
+                      // MSD-LIVE CHANGE changed label
+                      label={i18next.t('Text')}
                       optimized
                       required
                     />

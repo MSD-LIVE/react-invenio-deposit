@@ -9,8 +9,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _get from 'lodash/get';
+import _filter from 'lodash/filter';
 import { FieldLabel, SelectField } from 'react-invenio-forms';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 export class ResourceTypeField extends Component {
   groupErrors = (errors, fieldPath) => {
@@ -41,7 +42,17 @@ export class ResourceTypeField extends Component {
    * @returns {array} front-end options
    */
   createOptions = (propsOptions) => {
-    return propsOptions
+    //MSD-LIVE CHANGE remove Dataset, Software, and presentation as options because if non of the subtyped
+    // ones match what the user has then she should select (e.g.) Dataset / Other instead of just Dataset
+    const msdlives_list = _filter(propsOptions, (option) => {
+      return !((option.type_name == 'Dataset' && option.subtype_name == '') ||
+          (option.type_name == 'Software' && option.subtype_name == '') ||
+          (option.type_name == 'Publication' && option.subtype_name == 'Other') ||
+          (option.type_name == 'Presentation' && option.subtype_name == '')
+      );
+    })
+
+    return msdlives_list
       .map((o) => ({ ...o, label: this._label(o) }))
       .sort((o1, o2) => o1.label.localeCompare(o2.label))
       .map((o) => {

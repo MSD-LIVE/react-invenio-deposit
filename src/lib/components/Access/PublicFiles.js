@@ -14,7 +14,7 @@ import {
   MessageSection,
   MetadataSection,
 } from './utils';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 // Fully public (metadata + files)
 export class PublicFiles {

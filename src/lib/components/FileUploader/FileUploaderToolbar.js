@@ -10,7 +10,7 @@ import { useFormikContext } from 'formik';
 import React from 'react';
 import { Header, Checkbox, Grid, Icon, Label, List, Popup } from 'semantic-ui-react';
 import { humanReadableBytes } from './utils';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 // NOTE: This component has to be a function component to allow
 //       the `useFormikContext` hook.

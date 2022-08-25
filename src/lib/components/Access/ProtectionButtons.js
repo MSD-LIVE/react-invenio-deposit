@@ -8,7 +8,7 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import { FastField } from 'formik';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 class ProtectionButtonsComponent extends Component {
   /**

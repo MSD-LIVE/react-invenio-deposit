@@ -17,7 +17,7 @@ import { Button, Form, Icon, List } from 'semantic-ui-react';
 
 import { LicenseModal } from './LicenseModal';
 import { LicenseFieldItem } from './LicenseFieldItem';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 
 /**
