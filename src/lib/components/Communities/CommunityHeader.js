@@ -28,19 +28,19 @@ class CommunityHeaderComponent extends Component {
 
     return (
       showCommunityHeader && (
-        <Container className="page-subheader-outer compact" fluid>
+        <Container className="page-subheader-outer compact ml-0-mobile mr-0-mobile" fluid>
           <Container className="page-subheader">
             {community ? (
               <>
                 <div className="page-subheader-element">
                   <Image
-                    size="mini"
-                    className="community-logo-header"
+                    size="tiny"
+                    className="community-header-logo"
                     src={community.links?.logo || imagePlaceholderLink} // logo is undefined when new draft and no selection
                     fallbackSrc={imagePlaceholderLink}
                   />
                 </div>
-                <div className="page-subheader-element">
+                <div className="page-subheader-element flex align-items-center">
                   {community.metadata.title}
                 </div>
               </>
@@ -67,9 +67,10 @@ class CommunityHeaderComponent extends Component {
                         size="mini"
                         name="setting"
                         type="button"
-                        content={community 
-                          ? i18next.t('Change') 
-                          : i18next.t('Select a community')
+                        content={
+                          community
+                            ? i18next.t('Change')
+                            : i18next.t('Select a community')
                         }
                       />
                     }

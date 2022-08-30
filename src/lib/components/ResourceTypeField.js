@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import _get from 'lodash/get';
 import _filter from 'lodash/filter';
 import { FieldLabel, SelectField } from 'react-invenio-forms';
+import { Icon } from 'semantic-ui-react';
 import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 export class ResourceTypeField extends Component {

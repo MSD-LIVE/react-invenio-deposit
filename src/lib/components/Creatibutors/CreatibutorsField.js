@@ -21,8 +21,6 @@ import { CREATIBUTOR_TYPE } from './type';
 import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { sortOptions } from '../../utils';
 
-// MSD-LIVE CHANGE pulled in a newer version of this one component that fixes
-// RDM bug. After upgrade can discard all changes (as they should be in the upgraded version) except the i18next import
 const creatibutorNameDisplay = (value) => {
   const creatibutorType = _get(
     value,

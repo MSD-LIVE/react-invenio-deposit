@@ -24,6 +24,11 @@ export const FileUploaderToolbar = ({
 }) => {
   const { setFieldValue } = useFormikContext();
 
+  const handleOnChangeMetadataOnly = () => {
+    setFieldValue('files.enabled', !filesEnabled)
+    setFieldValue('access.files', 'public')
+  }
+
   return (
     <>
       <Grid.Column verticalAlign="middle" floated="left" mobile={16} tablet={6} computer={6}>
@@ -32,14 +37,14 @@ export const FileUploaderToolbar = ({
             <List.Item>
               <Checkbox
                 label={i18next.t('Metadata-only record')}
-                onChange={() => setFieldValue('files.enabled', !filesEnabled)}
+                onChange={handleOnChangeMetadataOnly}
                 disabled={filesList.length > 0}
                 checked={!filesEnabled}
               />
             </List.Item>
             <List.Item>
               <Popup
-                trigger={<Icon name="question circle outline" color="grey" />}
+                trigger={<Icon name="question circle outline" className="neutral" />}
                 content={i18next.t('Disable files for this record')}
                 position="top center"
               />

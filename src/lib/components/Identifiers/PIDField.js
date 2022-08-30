@@ -43,7 +43,7 @@ class ReservePIDBtn extends Component {
       <Field>
         {({ form: formik }) => (
           <Form.Button
-            color="green"
+            className="positive"
             size="mini"
             loading={loading}
             disabled={disabled || loading}
@@ -121,8 +121,8 @@ class ManagedUnmanagedSwitch extends Component {
 
   handleChange = (e, { value }) => {
     const { onManagedUnmanagedChange } = this.props;
-    const isManagedSelected = (value === 'managed' || value === 'need' );
-    onManagedUnmanagedChange(isManagedSelected, value);
+    const isManagedSelected = value === 'managed';
+    onManagedUnmanagedChange(isManagedSelected);
     this.setState({selectedRadio: value})
   };
 
@@ -439,9 +439,6 @@ class CustomPIDField extends Component {
         : isManagedSelected;
 
     const fieldError = getFieldErrors(form, fieldPath);
-
-    console.warn("(selectedRadio == 'need' || hasManagedIdentifier) && canBeManaged && _isManagedSelected", (selectedRadio == 'need' || hasManagedIdentifier) && canBeManaged && _isManagedSelected)
-    console.warn("canBeUnmanaged && !_isManagedSelected", canBeUnmanaged && !_isManagedSelected)
     return (
       <>
         <Form.Field required={required} error={fieldError}>

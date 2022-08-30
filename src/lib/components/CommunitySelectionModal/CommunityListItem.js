@@ -6,26 +6,29 @@
 
 import { i18next } from "@translations/invenio_app_rdm/i18next";
 import _truncate from 'lodash/truncate';
+import _capitalize from 'lodash/capitalize';
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { Image } from 'react-invenio-forms';
-import { Button, Item } from 'semantic-ui-react';
+import { Button, Icon, Item, Label } from 'semantic-ui-react';
 import { CommunityContext } from './CommunityContext';
 
 export const CommunityListItem = ({ result }) => {
   const { setLocalCommunity, getChosenCommunity } =
     useContext(CommunityContext);
 
-  const { metadata } = result;
+  const { metadata, ui } = result;
   const linkToCommunityPage = result.links.self_html;
   const linkToLogo = result.links.logo;
   const itemSelected = getChosenCommunity()?.id === result.id;
-  // TODO: fix the hardcoded `en`
-  const type_l10n = metadata.type?.title?.en;
+  const type_l10n = ui.type?.title_l10n;
+  const isRestricted = result.access.visibility === 'restricted';
+
   return (
     <Item key={result.id} className={itemSelected ? 'selected' : ''}>
       <Image
         size="tiny"
+        className="community-logo"
         src={linkToLogo}
         fallbackSrc="/static/images/square-placeholder.png"
         as={Item.Image}
@@ -34,6 +37,13 @@ export const CommunityListItem = ({ result }) => {
       <Item.Content>
         <Item.Header>
           {metadata.title}
+          {
+            isRestricted && 
+            <Label size='tiny' color={'red'} className='rel-ml-1'>
+              <Icon name='ban'/>
+              {_capitalize(result.access.visibility)}
+            </Label>
+          }
           <Button
             as="a"
             href={linkToCommunityPage}

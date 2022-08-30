@@ -40,7 +40,7 @@ const STATUSES = {
   //   ),
   // },
   [DepositStatus.EXPIRED]: {
-    color: 'light orange',
+    color: 'expired',
     title: i18next.t('Expired'),
     message: i18next.t(
       'The request to submit this upload to the project has expired.'
@@ -52,21 +52,21 @@ const STATUSES = {
     message: i18next.t('Your upload is published.'),
   },
   [DepositStatus.DRAFT_WITH_REVIEW]: {
-    color: 'light grey',
+    color: 'neutral',
     title: i18next.t('Draft'),
     message: i18next.t(
       'Once your upload is complete, you can submit it for review to the project curators.'
     ),
   },
   [DepositStatus.DRAFT]: {
-    color: 'light grey',
+    color: 'neutral',
     title: i18next.t('Draft'),
     message: i18next.t(
       'Once your upload is complete, you can publish or submit it for review to the project curators.'
     ),
   },
   [DepositStatus.NEW_VERSION_DRAFT]: {
-    color: 'light grey',
+    color: 'neutral',
     title: i18next.t('New version draft'),
     message: i18next.t('Once your upload is complete, you can publish it.'),
   },

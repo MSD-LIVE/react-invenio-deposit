@@ -63,6 +63,7 @@ export class IdentifiersField extends Component {
                 )}
                 <Form.Field>
                   <Button
+                    aria-label={i18next.t("Remove field")}
                     className="close-btn"
                     icon="close"
                     onClick={() => arrayHelpers.remove(indexPath)}
@@ -92,6 +93,6 @@ IdentifiersField.propTypes = {
 
 IdentifiersField.defaultProps = {
   fieldPath: 'metadata.identifiers',
-  label: i18next.t('Identifier(s)'),
+  label: i18next.t('Identifiers'),
   labelIcon: 'barcode',
 };

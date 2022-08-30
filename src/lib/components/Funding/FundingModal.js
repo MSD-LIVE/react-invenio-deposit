@@ -9,7 +9,6 @@ import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { ActionButton } from 'react-invenio-forms';
 import {
   EmptyResults,
   Error,
@@ -19,7 +18,7 @@ import {
   ResultsLoader,
   SearchBar,
 } from 'react-searchkit';
-import { Grid, Modal, Container } from 'semantic-ui-react';
+import {Grid, Modal, Container, Button} from 'semantic-ui-react';
 import * as Yup from 'yup';
 import { AwardResults } from './AwardResults';
 import CustomAwardForm from './CustomAwardForm';
@@ -50,12 +49,12 @@ const StandardSchema = Yup.object().shape({
 const CustomFundingSchema = Yup.object().shape({
   selectedFunding: Yup.object().shape({
     funder: Yup.object().shape({
-      id: Yup.string().required(i18next.t('Funder is required')),
+      id: Yup.string().required(i18next.t('Funder is required.')),
     }),
     award: Yup.object().shape({
       title: Yup.string().test({
         name: 'testTitle',
-        message: i18next.t('Title must be set alongside number'),
+        message: i18next.t('Title must be set alongside number.'),
         test: function testTitle(value) {
           const { number } = this.parent;
 
@@ -68,7 +67,7 @@ const CustomFundingSchema = Yup.object().shape({
       }),
       number: Yup.string().test({
         name: 'testNumber',
-        message: i18next.t('Number must be set alongside title'),
+        message: i18next.t('Number must be set alongside title.'),
         test: function testNumber(value) {
           const { title } = this.parent;
 
@@ -80,7 +79,7 @@ const CustomFundingSchema = Yup.object().shape({
         },
       }),
       url: Yup.string()
-        .url(i18next.t('Url Must be a valid url'))
+        .url(i18next.t('Url must be a valid url.'))
         .test({
           name: 'validateUrlDependencies',
           message: i18next.t('Url must be set alongside title and number.'),
@@ -142,7 +141,7 @@ function FundingModal({
       validateOnBlur={false}
       enableReinitialize={true}
     >
-      {({ values, resetForm }) => (
+      {({ values, resetForm, handleSubmit }) => (
         <Modal
           role="dialog"
           centered={false}
@@ -229,19 +228,17 @@ function FundingModal({
             )}
           </Modal.Content>
           <Modal.Actions>
-            <ActionButton
-              name="cancel"
-              onClick={(values, formikBag) => {
-                formikBag.resetForm();
+            <Button
+              onClick={() => {
+                resetForm();
                 closeModal();
               }}
               icon="remove"
               content={i18next.t('Cancel')}
               floated="left"
             />
-            <ActionButton
-              name="submit"
-              onClick={(event, formik) => formik.handleSubmit(event)}
+            <Button
+              onClick={(event) => handleSubmit(event)}
               primary
               icon="checkmark"
               content={

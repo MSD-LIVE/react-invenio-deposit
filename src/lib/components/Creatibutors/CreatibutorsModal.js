@@ -378,9 +378,8 @@ export class CreatibutorsModal extends Component {
         validateOnChange={false}
         validateOnBlur={false}
       >
-        {(formikProps) => {
+        {({ values, resetForm, handleSubmit, errors  }) => {
           // MSD-LIVE CHANGE get at errors from formik props too
-          const { values, resetForm, handleSubmit, errors } = formikProps;
           const personOrOrgPath = `person_or_org`;
           const typeFieldPath = `${personOrOrgPath}.type`;
           const familyNameFieldPath = `${personOrOrgPath}.family_name`;
@@ -554,6 +553,7 @@ export class CreatibutorsModal extends Component {
                         {...(this.isCreator() && { clearable: true })}
                         required={!this.isCreator()}
                         optimized
+                        scrolling
                       />
                     </div>
                   )}
