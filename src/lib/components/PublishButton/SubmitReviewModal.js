@@ -9,7 +9,7 @@ import { Formik } from 'formik';
 import _get from 'lodash/get';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Trans } from 'react-i18next';
+import { Trans } from "../../../lib/i18next";
 import {
   ErrorLabel,
   RadioField,

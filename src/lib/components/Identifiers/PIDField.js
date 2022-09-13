@@ -121,8 +121,8 @@ class ManagedUnmanagedSwitch extends Component {
 
   handleChange = (e, { value }) => {
     const { onManagedUnmanagedChange } = this.props;
-    const isManagedSelected = value === 'managed';
-    onManagedUnmanagedChange(isManagedSelected);
+    const isManagedSelected = (value === 'managed' || value === 'need' );
+    onManagedUnmanagedChange(isManagedSelected, value);
     this.setState({selectedRadio: value})
   };
 

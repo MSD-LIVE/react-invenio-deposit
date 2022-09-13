@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ProtectionButtons } from './ProtectionButtons';
-import { i18next } from '@translations/i18next';
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 
 export const MetadataAccess = ({ recordAccess, communityAccess }) => {
   const publicMetadata = recordAccess === 'public';

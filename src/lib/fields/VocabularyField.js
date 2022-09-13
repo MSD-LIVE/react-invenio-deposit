@@ -89,17 +89,6 @@ export class VocabularyField extends Field {
 }
 
 export class AllowAdditionsVocabularyField extends VocabularyField {
-  // MSD-LIVE CHANGE had to add constructor otherwise rdm had js errors - try reverting after upgrade
-  constructor({
-    fieldpath,
-    deserializedDefault = null,
-    serializedDefault = null,
-    localeFields = [],
-  }) {
-    super({ fieldpath, deserializedDefault, serializedDefault });
-    this.localeFields = localeFields;
-  }
-
   deserialize(record) {
     const fieldValue = _get(record, this.fieldpath, this.deserializedDefault);
     // We deserialize the values in the format
@@ -236,8 +225,8 @@ export class FundingField extends Field {
 
   /**
    * Deserializes a funding record.
-   * 
-   * @param {object} record the funding record to be deserialized. 
+   *
+   * @param {object} record the funding record to be deserialized.
    * @param {string} defaultLocale - The default locale
    *
    * @returns {object} the deserialized record.
@@ -298,8 +287,8 @@ export class FundingField extends Field {
 
   /**
    * Serializes a funding record.
-   * 
-   * @param {object} record 
+   *
+   * @param {object} record
    * @param {string} defaultLocale - The default locale
    *
    * @returns

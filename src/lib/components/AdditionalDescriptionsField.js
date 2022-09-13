@@ -70,28 +70,29 @@ export class AdditionalDescriptionsField extends Component {
                       required
                       optimized
                     />
-                    <LanguagesField
-                      serializeSuggestions={(suggestions) =>
-                        suggestions.map((item) => ({
-                          text: item.title_l10n,
-                          value: item.id,
-                          fieldPathPrefix: item.id,
-                        }))
-                      }
-                      initialOptions={
-                        recordUI?.additional_descriptions &&
-                        recordUI.additional_descriptions[indexPath]?.lang
-                          ? [recordUI.additional_descriptions[indexPath].lang]
-                          : []
-                      }
-                      fieldPath={`${fieldPathPrefix}.lang`}
-                      label={i18next.t('Language')}
-                      multiple={false}
-                      placeholder={i18next.t('Select language')}
-                      labelIcon={null}
-                      clearable
-                      selectOnBlur={false}
-                    />
+                    {/*MSD-LIVE CHANGE remove language drop down*/}
+                    {/*<LanguagesField*/}
+                    {/*  serializeSuggestions={(suggestions) =>*/}
+                    {/*    suggestions.map((item) => ({*/}
+                    {/*      text: item.title_l10n,*/}
+                    {/*      value: item.id,*/}
+                    {/*      fieldPathPrefix: item.id,*/}
+                    {/*    }))*/}
+                    {/*  }*/}
+                    {/*  initialOptions={*/}
+                    {/*    recordUI?.additional_descriptions &&*/}
+                    {/*    recordUI.additional_descriptions[indexPath]?.lang*/}
+                    {/*      ? [recordUI.additional_descriptions[indexPath].lang]*/}
+                    {/*      : []*/}
+                    {/*  }*/}
+                    {/*  fieldPath={`${fieldPathPrefix}.lang`}*/}
+                    {/*  label={i18next.t('Language')}*/}
+                    {/*  multiple={false}*/}
+                    {/*  placeholder={i18next.t('Select language')}*/}
+                    {/*  labelIcon={null}*/}
+                    {/*  clearable*/}
+                    {/*  selectOnBlur={false}*/}
+                    {/*/>*/}
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
