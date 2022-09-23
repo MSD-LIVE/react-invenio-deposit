@@ -23,9 +23,10 @@ export class TitlesField extends Component {
           fieldPath={fieldPath}
           label={<FieldLabel htmlFor={fieldPath} icon={'book'} label={label} />}
           required={required}
-          className="title-field"
+          className="title-field msd-title-field"
         />
-        <AdditionalTitlesField options={options} recordUI={recordUI} />
+        {/*MSDLIVE change remove the add titles button*/}
+        {/*<AdditionalTitlesField options={options} recordUI={recordUI} />*/}
       </>
     );
   }

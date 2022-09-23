@@ -52,37 +52,38 @@ export const FileUploaderToolbar = ({
           </List>
         )}
       </Grid.Column>
-      {filesEnabled && (
-        <Grid.Column mobile={16} tablet={10} computer={10} className="storage-col">
-          <Header size="tiny" className="mr-10">{i18next.t('Storage available')}</Header>
-          <List horizontal floated="right">
-            <List.Item>
-              <Label
-                {...(filesList.length === quota.maxFiles
-                  ? { color: 'blue' }
-                  : {})}
-              >
-                {i18next.t(`{{length}} out of {{maxfiles}} files`, {
-                  length: filesList.length,
-                  maxfiles: quota.maxFiles,
-                })}
-              </Label>
-            </List.Item>
-            <List.Item>
-              <Label
-                {...(humanReadableBytes(filesSize, decimalSizeDisplay) ===
-                humanReadableBytes(quota.maxStorage, decimalSizeDisplay)
-                  ? { color: 'blue' }
-                  : {})}
-              >
-                {humanReadableBytes(filesSize, decimalSizeDisplay)}{' '}
-                {i18next.t('out of')}{' '}
-                {humanReadableBytes(quota.maxStorage, decimalSizeDisplay)}
-              </Label>
-            </List.Item>
-          </List>
-        </Grid.Column>
-      )}
+       {/*// MSDLIVE change - remove the "Storage available0 out of 100 files0 bytes out of 10.00 Gb" words in Files section: */}
+      {/*{filesEnabled && (*/}
+      {/*  <Grid.Column mobile={16} tablet={10} computer={10} className="storage-col">*/}
+      {/*    <Header size="tiny" className="mr-10">{i18next.t('Storage available')}</Header>*/}
+      {/*    <List horizontal floated="right">*/}
+      {/*      <List.Item>*/}
+      {/*        <Label*/}
+      {/*          {...(filesList.length === quota.maxFiles*/}
+      {/*            ? { color: 'blue' }*/}
+      {/*            : {})}*/}
+      {/*        >*/}
+      {/*          {i18next.t(`{{length}} out of {{maxfiles}} files`, {*/}
+      {/*            length: filesList.length,*/}
+      {/*            maxfiles: quota.maxFiles,*/}
+      {/*          })}*/}
+      {/*        </Label>*/}
+      {/*      </List.Item>*/}
+      {/*      <List.Item>*/}
+      {/*        <Label*/}
+      {/*          {...(humanReadableBytes(filesSize, decimalSizeDisplay) ===*/}
+      {/*          humanReadableBytes(quota.maxStorage, decimalSizeDisplay)*/}
+      {/*            ? { color: 'blue' }*/}
+      {/*            : {})}*/}
+      {/*        >*/}
+      {/*          {humanReadableBytes(filesSize, decimalSizeDisplay)}{' '}*/}
+      {/*          {i18next.t('out of')}{' '}*/}
+      {/*          {humanReadableBytes(quota.maxStorage, decimalSizeDisplay)}*/}
+      {/*        </Label>*/}
+      {/*      </List.Item>*/}
+      {/*    </List>*/}
+      {/*  </Grid.Column>*/}
+      {/*)}*/}
     </>
   );
 };

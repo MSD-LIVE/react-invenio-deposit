@@ -33,24 +33,25 @@ class SubmitReviewOrPublishComponent extends Component {
       <SubmitReviewButton {...ui} />
     ) : showChangeCommunityButton ? (
       <>
-        <CommunitySelectionModal
-          onCommunityChange={(community) => {
-            changeSelectedCommunity(community);
-          }}
-          chosenCommunity={community}
-          trigger={
-            <Button
-              content={i18next.t("Change community")}
-              fluid={true}
-              className="mb-10"
-            />
-          }
-        />
-        <PublishButton
-          buttonLabel={i18next.t('Publish without community')}
-          publishWithoutCommunity={true}
-          {...ui}
-        />
+        {/*MSD-LIVE CHANGE don't show these two buttons as we want them to use our project selects instead*/}
+        {/*<CommunitySelectionModal*/}
+        {/*  onCommunityChange={(community) => {*/}
+        {/*    changeSelectedCommunity(community);*/}
+        {/*  }}*/}
+        {/*  chosenCommunity={community}*/}
+        {/*  trigger={*/}
+        {/*    <Button*/}
+        {/*      content={i18next.t("Change community")}*/}
+        {/*      fluid={true}*/}
+        {/*      className="mb-10"*/}
+        {/*    />*/}
+        {/*  }*/}
+        {/*/>*/}
+        {/*<PublishButton*/}
+        {/*  buttonLabel={i18next.t('Publish without community')}*/}
+        {/*  publishWithoutCommunity={true}*/}
+        {/*  {...ui}*/}
+        {/*/>*/}
       </>
     ) : (
       <PublishButton {...ui} />
