@@ -45,6 +45,8 @@ automatically by the Data Repository.  See
           <FieldLabel htmlFor={fieldPath} icon={labelIcon} label={label} />
         }
         placeholder={placeholder}
+        // MSD-LIVE CHANGE added required
+        required={true}
       />
     );
   }

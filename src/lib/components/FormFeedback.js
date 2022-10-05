@@ -192,9 +192,18 @@ class DisconnectedFormFeedback extends Component {
     //          e.g., {metadata: {creators: ,,,}} => {"metadata.creators": ...}
     // For now, only for metadata, files and access.embargo
     const metadata = errors.metadata || {};
-    const step0_metadata = Object.entries(metadata).map(([key, value]) => {
+
+    let step0_metadata = Object.entries(metadata).map(([key, value]) => {
       return ['metadata.' + key, value];
     });
+
+    //MSD-LIVE change - transform our custom validation errors from hooking into service component into expected format for remaining code:
+    if(errors && errors.errors && step0_metadata.length === 0) {
+      step0_metadata = Object.entries(errors.errors).map(([key, value]) => {
+        return [value.field, value.messages.toString()];
+      });
+    }
+
     const files = errors.files || {};
     const step0_files = Object.entries(files).map(([key, value]) => {
       return ['files.' + key, value];
