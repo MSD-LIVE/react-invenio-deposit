@@ -1,3 +1,5 @@
+// MSD-LIVE CHANGE letting creator/contributor have multiple roles instead of just 1
+
 // This file is part of React-Invenio-Deposit
 // Copyright (C) 2021 CERN.
 // Copyright (C) 2021 Northwestern University.
@@ -56,13 +58,23 @@ export const CreatibutorsFieldItem = ({
       hidden: monitor.isOver({ shallow: true }),
     }),
   });
+  //MSD-LIVE CHANGE changed to allow multiple roles
+  const renderRoles = (roles, roleOptions) => {
+    if (roles) {
+      const friendlyRoles =
+        roles.map((role) => {
+          // const found = roleOptions.find(({ value }) => value === role);
+          let found = undefined;
+          for(let i = 0; i < roleOptions.length; i++){
+            if(roleOptions[i].value === role){
+              found = roleOptions[i];
+            }
+          }
+          const label = found ? found.text : role;
+          return label;
+        });
 
-  const renderRole = (role, roleOptions) => {
-    if (role) {
-      const friendlyRole =
-        roleOptions.find(({ value }) => value === role)?.text ?? role;
-
-      return <Label size="tiny">{friendlyRole}</Label>;
+      return <Label size="tiny">{friendlyRoles.join(", ")}</Label>;
     }
   };
   const firstError =
@@ -146,7 +158,8 @@ export const CreatibutorsFieldItem = ({
                   />
                 )}
                 {displayName}{' '}
-                {renderRole(initialCreatibutor?.role, roleOptions)}
+                //MSD-LIVE CHANGE letting contributors have multiple roles
+                {renderRoles(initialCreatibutor?.roles, roleOptions)}
               </span>
             </List.Description>
             {firstError && (

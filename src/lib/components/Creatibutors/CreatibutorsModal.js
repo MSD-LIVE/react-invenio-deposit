@@ -1,3 +1,5 @@
+//MSD-LIVE CHANGE letting creator/contributor have multiple roles instead of just 1
+
 // This file is part of React-Invenio-Deposit
 // Copyright (C) 2021 CERN.
 // Copyright (C) 2021 Northwestern University.
@@ -74,11 +76,12 @@ export class CreatibutorsModal extends Component {
         }
       }),
     }),
-    role: Yup.string().when('_', (_, schema) => {
-      if (!this.isCreator()) {
-        return schema.required(i18next.t('Role is a required field.'));
-      }
-    }),
+    // MSD-LIVE CHANGE removing validator as it breaks after change to allow multiple roles and we aren't using it anyways (we removed 'Creators' field)
+    // roles: Yup.string().when('_', (_, schema) => {
+    //   if (!this.isCreator()) {
+    //     return schema.required(i18next.t('Role is a required field.'));
+    //   }
+    // }),
   });
 
   focusInput = () => this.inputRef.current.focus();
@@ -174,7 +177,8 @@ export class CreatibutorsModal extends Component {
         ),
       },
       affiliations: _get(initialCreatibutor, 'affiliations', []),
-      role: _get(initialCreatibutor, 'role', ''),
+      //MSD-LIVE CHANGE letting contributors have multiple roles
+      roles: _get(initialCreatibutor, 'roles', []),
     };
   };
 
@@ -387,7 +391,8 @@ export class CreatibutorsModal extends Component {
           const nameFieldPath = `${personOrOrgPath}.name`;
           const identifiersFieldPath = `${personOrOrgPath}.identifiers`;
           const affiliationsFieldPath = 'affiliations';
-          const roleFieldPath = 'role';
+          // MSD-LIVE CHANGE letting contributors have multiple roles
+          const roleFieldPath = 'roles';
           // MSD-LIVE CHANGE see if there's an error with identifiers (we added it if so) to determine if save buttons should be disabled
           const hasOrcidErrors = _get(errors, identifiersFieldPath) !== undefined;
           return (
@@ -554,6 +559,8 @@ export class CreatibutorsModal extends Component {
                         required={!this.isCreator()}
                         optimized
                         scrolling
+                        //MSD-LIVE CHANGE letting roles be multiple select
+                        multiple
                       />
                     </div>
                   )}
@@ -641,7 +648,8 @@ CreatibutorsModal.propTypes = {
       ),
     }),
     affiliations: PropTypes.array,
-    role: PropTypes.string,
+    //MSD-LIVE CHANGE letting contributors have multiple roles
+    roles: PropTypes.array,
   }),
   trigger: PropTypes.object.isRequired,
   onCreatibutorChange: PropTypes.func.isRequired,
