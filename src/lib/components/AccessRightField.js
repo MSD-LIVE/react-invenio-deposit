@@ -36,13 +36,26 @@ export class AccessRightFieldCmp extends Component {
 
     return (
       <Card className="access-right">
-        <Form.Field required>
+        {/* MSD-LIVE Change:  Got rid of required style since there is no way to not set this field.  It looked wierd
+        with the red asterisk. */}
+        <Form.Field>
+
           <Card.Content>
             <Card.Header>
               <FieldLabel htmlFor={fieldPath} icon={labelIcon} label={label} />
             </Card.Header>
           </Card.Content>
+
           <Card.Content>
+            {/* MSD-LIVE Change:  Moved the access status message above the toggle buttons. */}
+            <AccessMessage
+              access={formik.field.value}
+              accessCommunity={communityAccess}
+              metadataOnly={isMetadataOnly}
+            />
+
+            <Divider hidden />
+
             <MetadataAccess
               recordAccess={formik.field.value.record}
               communityAccess={communityAccess}
@@ -57,21 +70,13 @@ export class AccessRightFieldCmp extends Component {
             />
 
             <Divider hidden />
-
-            <AccessMessage
-              access={formik.field.value}
-              accessCommunity={communityAccess}
-              metadataOnly={isMetadataOnly}
-            />
-
-            <Divider hidden />
           </Card.Content>
-          <Card.Content>
+          <Card.Content className='no-border'>
             <Card.Header as={Header} size="tiny">
               {i18next.t('Options')}
             </Card.Header>
           </Card.Content>
-          <Card.Content extra>
+          <Card.Content extra className='no-border'>
             <EmbargoAccess
               access={formik.field.value}
               accessCommunity={communityAccess}
