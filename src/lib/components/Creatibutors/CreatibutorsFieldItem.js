@@ -158,7 +158,7 @@ export const CreatibutorsFieldItem = ({
                   />
                 )}
                 {displayName}{' '}
-                {/* MSD-LIVE CHANGE letting contributors have multiple roles */}
+                {/*MSD-LIVE CHANGE letting contributors have multiple roles*/}
                 {renderRoles(initialCreatibutor?.roles, roleOptions)}
               </span>
             </List.Description>
