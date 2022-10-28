@@ -177,7 +177,7 @@ export class CreatibutorsModal extends Component {
         ),
       },
       affiliations: _get(initialCreatibutor, 'affiliations', []),
-      //MSD-LIVE CHANGE letting contributors have multiple roles
+      // MSD-LIVE CHANGE letting contributors have multiple roles
       roles: _get(initialCreatibutor, 'roles', []),
     };
   };
@@ -648,7 +648,7 @@ CreatibutorsModal.propTypes = {
       ),
     }),
     affiliations: PropTypes.array,
-    //MSD-LIVE CHANGE letting contributors have multiple roles
+    // MSD-LIVE CHANGE letting contributors have multiple roles
     roles: PropTypes.array,
   }),
   trigger: PropTypes.object.isRequired,
