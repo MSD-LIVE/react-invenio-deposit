@@ -487,14 +487,16 @@ export class CreatibutorsModal extends Component {
                         <div>
                           <Form.Group widths="equal">
                             <TextField
-                              label={i18next.t('Family name')}
-                              placeholder={i18next.t('Family name')}
+                              //MSD-LIVE CHANGE changed label
+                              label={i18next.t('Last name')}
+                              placeholder={i18next.t('Last name')}
                               fieldPath={familyNameFieldPath}
                               required={this.isCreator()}
                             />
                             <TextField
-                              label={i18next.t('Given names')}
-                              placeholder={i18next.t('Given names')}
+                              //MSD-LIVE CHANGE changed label
+                              label={i18next.t('First name')}
+                              placeholder={i18next.t('First name')}
                               fieldPath={givenNameFieldPath}
                             />
                           </Form.Group>

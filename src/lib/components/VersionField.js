@@ -22,9 +22,7 @@ export class VersionField extends Component {
     // MSD-LIVE CHANGE changed helpText
     const helpText = (
       <span>
-          All uploads will be assigned a version number.  If you have
-a specific version number for your software or dataset, please enter it here.  Otherwise, a version number will be assigned
-automatically by the Data Repository.  See
+          All uploads must be assigned a unique version number.  If you have a specific version number for your software or dataset, please enter it here.  See
           <a
             href="https://semver.org/"
             target="_blank"
