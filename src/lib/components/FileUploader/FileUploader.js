@@ -202,7 +202,7 @@ export const FileUploaderComponent = ({
           </Grid.Row>
         )}
         {isDraftRecord ? (
-          <Grid.Row className="file-upload-note pt-5">
+          <Grid.Row className="file-upload-note pt-5 pb-0">
             <Grid.Column width={16}>
               <Message visible warning>
                 <p>
@@ -230,6 +230,19 @@ export const FileUploaderComponent = ({
                   {i18next.t(
                     'You must create a new version to add, modify or delete files.'
                   )}
+                </p>
+              </Message>
+            </Grid.Column>
+          </Grid.Row>
+        )}
+        {/* MSD-LIVE Change:  Moved the file size message over to the FileUploader so it is only visible when files are enabled */}
+        {filesEnabled && isDraftRecord && (
+          <Grid.Row className="file-upload-note pt-5">
+            <Grid.Column width={16}>
+              <Message visible>
+                <p>
+                  <Icon name="info circle" />
+                  If you’re trying to upload a file larger than 1TB, please contact <a href={'mailto:info@msdlive.org'}>info@msdlive.org</a> for assistance
                 </p>
               </Message>
             </Grid.Column>
