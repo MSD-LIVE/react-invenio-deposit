@@ -1,3 +1,5 @@
+//MSD-LIVE CHANGE letting creator/contributor have multiple roles instead of just 1
+
 // This file is part of React-Invenio-Deposit
 // Copyright (C) 2020-2022 CERN.
 // Copyright (C) 2020-2022 Northwestern University.
@@ -114,10 +116,11 @@ export class RDMDepositRecordSerializer extends DepositRecordSerializer {
         person_or_org: new Field({
           fieldpath: 'person_or_org',
         }),
-        role: new VocabularyField({
-          fieldpath: 'role',
-          deserializedDefault: '',
-          serializedDefault: '',
+        //MSD-LIVE CHANGE changed to allow multiple roles
+        roles: new VocabularyField({
+          fieldpath: 'roles',
+          deserializedDefault: [],
+          serializedDefault: [],
         }),
         affiliations: new AllowAdditionsVocabularyField({
           fieldpath: 'affiliations',
@@ -133,10 +136,12 @@ export class RDMDepositRecordSerializer extends DepositRecordSerializer {
         person_or_org: new Field({
           fieldpath: 'person_or_org',
         }),
-        role: new VocabularyField({
-          fieldpath: 'role',
-          deserializedDefault: '',
-          serializedDefault: '',
+        //MSD-LIVE CHANGE changed to allow multiple roles
+        roles: new AllowAdditionsVocabularyField({
+          fieldpath: 'roles',
+          deserializedDefault: [],
+          serializedDefault: [],
+          labelField: 'name',
         }),
         affiliations: new AllowAdditionsVocabularyField({
           fieldpath: 'affiliations',

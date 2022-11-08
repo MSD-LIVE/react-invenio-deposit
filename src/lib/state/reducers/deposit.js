@@ -174,7 +174,8 @@ export function computeDepositState(record, selectedCommunity = undefined) {
   // show submit for review button conditions extracted to be reused
   const _showSubmitReviewButton =
     communityIsSelected &&
-    !isReviewForSelectedCommunityDeclinedOrExpired &&
+    //MSD-LIVE CHANGE: let users re-submit to project that declined/expired
+    //!isReviewForSelectedCommunityDeclinedOrExpired &&
     !hasStatus(record, [
       DepositStatus.PUBLISHED,
       DepositStatus.NEW_VERSION_DRAFT,
