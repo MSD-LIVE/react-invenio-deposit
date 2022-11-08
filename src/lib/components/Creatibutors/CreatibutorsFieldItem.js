@@ -60,7 +60,7 @@ export const CreatibutorsFieldItem = ({
   });
   //MSD-LIVE CHANGE changed to allow multiple roles
   const renderRoles = (roles, roleOptions) => {
-    if (roles) {
+    if (roles && roles.length > 0) {
       const friendlyRoles =
         roles.map((role) => {
           // const found = roleOptions.find(({ value }) => value === role);
