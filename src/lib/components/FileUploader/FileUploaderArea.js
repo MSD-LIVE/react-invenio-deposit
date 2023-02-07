@@ -139,7 +139,7 @@ const FileTableRow = ({
       )}
       {isDraftRecord && (
         <Table.Cell textAlign="right" width={2}>
-          {(file.uploadState?.isFinished || file.uploadState?.isFailed) &&
+          {(file.uploadState?.isFinished || file.uploadState?.isFailed || file.uploadState?.isPending) &&
             (isDeleting ? (
               <Icon loading name="spinner" />
             ) : (
@@ -153,7 +153,7 @@ const FileTableRow = ({
                 title={i18next.t("Delete file")}
               />
             ))}
-          {file.uploadState?.isUploading && (
+          {(file.uploadState?.isUploading ) && (
             <Button
               compact
               type="button"
