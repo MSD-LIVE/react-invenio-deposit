@@ -1,3 +1,5 @@
+// MSD-LIVE change in this file to use msd-live file_location prop instead of RDM's to determine if its metadata-only or not
+
 // This file is part of React-Invenio-Deposit
 // Copyright (C) 2020-2021 CERN.
 // Copyright (C) 2020-2021 Northwestern University.
@@ -32,7 +34,9 @@ export class AccessRightFieldCmp extends Component {
     } = this.props;
 
     const communityAccess = community?.access.visibility || 'public';
-    const isMetadataOnly = !formik.form.values.files.enabled;
+    //MSDLIVE-CHANGE using our custom prop to determine if it's metadata-only or not instead of RDM's
+    // const isMetadataOnly = !formik.form.values.files.enabled;
+    const isMetadataOnly = formik.form.values.metadata.msdlive_file_location ? formik.form.values.metadata.msdlive_file_location.location_type === 'external' : false;
 
     return (
       <Card className="access-right">
