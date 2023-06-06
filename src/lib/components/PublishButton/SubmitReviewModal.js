@@ -33,6 +33,10 @@ export class SubmitReviewModal extends Component {
     acceptAfterPublishRecord: Yup.string().required(
       i18next.t('You must click and accept this.')
     ),
+    //MSDLIVE CHANGE added checkbox
+    acceptCannotModifyFiles: Yup.string().required(
+      i18next.t('You must click and accept this.')
+    ),
     reviewComment: Yup.string(),
   });
 
@@ -50,6 +54,7 @@ export class SubmitReviewModal extends Component {
         initialValues={{
           acceptAccessToRecord: '',
           acceptAfterPublishRecord: '',
+          acceptCannotModifyFiles: '', //MSDLIVE CHANGE
           reviewComment: initialReviewComment || '',
         }}
         onSubmit={onSubmit}
@@ -141,6 +146,29 @@ export class SubmitReviewModal extends Component {
                       className="mt-0 mb-5"
                     />
                   </Form.Field>
+                  {/*MSDLIVE CHANGE START adding 3rd checkbox*/}
+                  <Form.Field>
+                    <RadioField
+                      control={Checkbox}
+                      fieldPath="acceptCannotModifyFiles"
+                      label="File addition, removal or modification are not allowed after this upload is published"
+                      checked={
+                        _get(values, 'acceptCannotModifyFiles') === 'checked'
+                      }
+                      onChange={({ event, data, formikProps }) => {
+                        formikProps.form.setFieldValue(
+                          'acceptCannotModifyFiles',
+                          data.checked ? 'checked' : ''
+                        );
+                      }}
+                      optimized
+                    />
+                    <ErrorLabel
+                      fieldPath="acceptCannotModifyFiles"
+                      className="mt-0 mb-5"
+                    />
+                  </Form.Field>
+                  {/*MSDLIVE CHANGE END*/}
                   <TextAreaField
                     fieldPath="reviewComment"
                     label="Message to curators (optional)"

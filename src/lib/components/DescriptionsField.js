@@ -1,4 +1,5 @@
 // MSD-LIVE CHANGE just changing help text wording (and removed <Trans> wrapper component as we don't need translations)
+// also changed add'l description to pass config prop
 // copied from:
 // react-invenio-deposit\src\lib\components
 
@@ -33,7 +34,8 @@ export class DescriptionsField extends Component {
           }
           optimized
         />
-        <AdditionalDescriptionsField recordUI={recordUI} options={options} />
+        {/*MSDLIVE CHANGE passing editorConfig prop so add'l description have same editor options (latest release of RDM does this too so can revert this with next rdm upgrade)*/}
+        <AdditionalDescriptionsField recordUI={recordUI} options={options} editorConfig={editorConfig}/>
       </>
     );
   }
