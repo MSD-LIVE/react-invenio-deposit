@@ -22,7 +22,7 @@ import { sortOptions } from '../utils';
 
 export class AdditionalDescriptionsField extends Component {
   render() {
-    const { fieldPath, options, recordUI } = this.props;
+    const { fieldPath, options, recordUI, editorConfig } = this.props;
     return (
       <ArrayField
         addButtonLabel={i18next.t('Add Supporting Information')}
@@ -45,8 +45,9 @@ export class AdditionalDescriptionsField extends Component {
                   <Grid.Column mobile={16} tablet={10} computer={12}>
                     <RichInputField
                       fieldPath={`${fieldPathPrefix}.description`}
-                      // MSD-LIVE CHANGE changed label
+                      // MSD-LIVE CHANGE changed label & passing in config
                       label={i18next.t('Text')}
+                      editorConfig={editorConfig}
                       optimized
                       required
                     />
