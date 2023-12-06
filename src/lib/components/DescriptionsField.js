@@ -15,6 +15,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { FieldLabel, RichInputField } from 'react-invenio-forms';
+
+// MSD-LIVE CHANGE importing our modified copy of RichInputField instead
+// import { FieldLabel } from 'react-invenio-forms';
+// import { RichInputField } from './RichInputField;
+
 //MSD-LIVE CHANGE using our version of add'l descriptions and corrected i18next import
 import { AdditionalDescriptionsField } from './AdditionalDescriptionsField';
 import { i18next } from "@translations/invenio_app_rdm/i18next";
@@ -25,6 +30,7 @@ export class DescriptionsField extends Component {
       this.props;
     return (
       <>
+      <div>zoe was here</div>
         <RichInputField
           className="description-field rel-mb-1"
           fieldPath={fieldPath}
