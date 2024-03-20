@@ -492,12 +492,16 @@ export class CreatibutorsModal extends Component {
                               placeholder={i18next.t('Last name')}
                               fieldPath={familyNameFieldPath}
                               required={this.isCreator()}
+                              /* MSD-LIVE CHANGE - add data-cy for testing via cypress */
+                              data-cy="creatibutors-modal-last-name-field"
                             />
                             <TextField
                               //MSD-LIVE CHANGE changed label
                               label={i18next.t('First name')}
                               placeholder={i18next.t('First name')}
                               fieldPath={givenNameFieldPath}
+                              /* MSD-LIVE CHANGE - add data-cy for testing via cypress */
+                              data-cy="creatibutors-modal-first-name-field"
                             />
                           </Form.Group>
                           <Form.Group widths="equal">
@@ -620,6 +624,8 @@ export class CreatibutorsModal extends Component {
                   content={i18next.t('Save')}
                   // MSD-LIVE CHAGE disable buttons if orcid is invalid
                   disabled={hasOrcidErrors}
+                  /* MSD-LIVE CHANGE - add data-cy for testing via cypress */
+                  data-cy="creatibutors-modal-save-button"
                 />
               </Modal.Actions>
             </Modal>

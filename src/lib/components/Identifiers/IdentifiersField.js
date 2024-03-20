@@ -67,6 +67,8 @@ export class IdentifiersField extends Component {
                     className="close-btn"
                     icon="close"
                     onClick={() => arrayHelpers.remove(indexPath)}
+                    // MSD-LIVE CHANGE - add data-cy for testing via cypress
+                    data-cy="identifiers-field-close-row-button"
                   />
                 </Form.Field>
               </GroupField>

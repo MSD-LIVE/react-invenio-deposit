@@ -94,6 +94,8 @@ export class RelatedWorksField extends Component {
                     className="close-btn"
                     icon 
                     onClick={() => arrayHelpers.remove(indexPath)}
+                    // MSD-LIVE CHANGE - add data-cy for testing via cypress
+                    data-cy="related-works-field-close-row-button"
                   >
                     <Icon name="close" />
                   </Button>
