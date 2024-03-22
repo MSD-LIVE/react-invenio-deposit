@@ -110,6 +110,8 @@ export class SubmitReviewModal extends Component {
                         );
                       }}
                       optimized
+                      // MSD-LIVE CHANGE - add data-cy for testing via cypress
+                      data-cy="submit-review-modal-checkbox"
                     />
                     <ErrorLabel
                       fieldPath="acceptAccessToRecord"
@@ -140,6 +142,8 @@ export class SubmitReviewModal extends Component {
                         );
                       }}
                       optimized
+                      // MSD-LIVE CHANGE - add data-cy for testing via cypress
+                      data-cy="submit-review-modal-checkbox"
                     />
                     <ErrorLabel
                       fieldPath="acceptAfterPublishRecord"
@@ -162,6 +166,8 @@ export class SubmitReviewModal extends Component {
                         );
                       }}
                       optimized
+                      // MSD-LIVE CHANGE - add data-cy for testing via cypress
+                      data-cy="submit-review-modal-checkbox"
                     />
                     <ErrorLabel
                       fieldPath="acceptCannotModifyFiles"
@@ -186,6 +192,7 @@ export class SubmitReviewModal extends Component {
                   }}
                   positive
                   content={i18next.t('Submit review')}
+                  data-cy="submit-review-modal-button"
                 />
               </Modal.Actions>
             </Modal>

@@ -51,6 +51,8 @@ export class SaveButtonComponent extends Component {
         labelPosition="left"
         content={i18next.t('Save draft')}
         {...uiProps}
+        // MSD-LIVE CHANGE - added data-cy for testing via cypress
+        data-cy="save-draft-button"
       />
     );
   }

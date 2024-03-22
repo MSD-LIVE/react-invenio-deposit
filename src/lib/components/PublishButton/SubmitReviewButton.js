@@ -86,6 +86,8 @@ class SubmitReviewButtonComponent extends Component {
               : i18next.t('Submit for review')
           }
           {...uiProps}
+          // MSD-LIVE CHANGE - add data-cy for testing via cypress
+          data-cy="submit-review-button"
         />
         {isConfirmModalOpen && (
           <SubmitReviewModal
