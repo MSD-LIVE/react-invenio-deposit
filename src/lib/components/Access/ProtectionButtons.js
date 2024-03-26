@@ -48,6 +48,8 @@ class ProtectionButtonsComponent extends Component {
         <Button
           className={restrictedColor}
           data-testid="protection-buttons-component-restricted"
+          // MSD-LIVE CHANGE - add data-cy for testing rdm via cypress
+          data-cy="record-management-restricted-button"
           active={!active}
           onClick={this.handleRestrictionButtonClick}
         >

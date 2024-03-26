@@ -107,6 +107,8 @@ class PublishButtonComponent extends Component {
                 }
                 positive
                 content={buttonLabel}
+                // MSD-LIVE CHANGE - add data-cy for testing rdm via cypress
+                data-cy="publish-button"
               />
             </Modal.Actions>
           </Modal>

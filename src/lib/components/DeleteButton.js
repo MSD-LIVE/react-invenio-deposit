@@ -107,6 +107,7 @@ export class DeleteButtonComponent extends Component {
           labelPosition="left"
           {...uiProps}
           content={capitalizedActionLbl}
+          data-cy="delete-button"
         />
 
         <Modal
@@ -127,6 +128,7 @@ export class DeleteButtonComponent extends Component {
               loading={isSubmitting && actionState === DRAFT_DELETE_STARTED}
               icon="trash alternate outline"
               content={capitalizedActionLbl}
+              data-cy="modal-delete-button"
             />
           </Modal.Actions>
         </Modal>
