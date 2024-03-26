@@ -107,6 +107,7 @@ export class DeleteButtonComponent extends Component {
           labelPosition="left"
           {...uiProps}
           content={capitalizedActionLbl}
+          // MSD-LIVE CHANGE - add data-cy for testing rdm via cypress
           data-cy="delete-button"
         />
 
@@ -128,6 +129,7 @@ export class DeleteButtonComponent extends Component {
               loading={isSubmitting && actionState === DRAFT_DELETE_STARTED}
               icon="trash alternate outline"
               content={capitalizedActionLbl}
+              // MSD-LIVE CHANGE - add data-cy for testing rdm via cypress
               data-cy="modal-delete-button"
             />
           </Modal.Actions>

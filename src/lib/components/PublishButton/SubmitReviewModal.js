@@ -192,6 +192,7 @@ export class SubmitReviewModal extends Component {
                   }}
                   positive
                   content={i18next.t('Submit review')}
+                  // MSD-LIVE CHANGE - add data-cy for testing rdm via cypress
                   data-cy="submit-review-modal-button"
                 />
               </Modal.Actions>
