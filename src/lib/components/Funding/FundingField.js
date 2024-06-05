@@ -34,52 +34,52 @@ function FundingFieldForm(props) {
   const deserializeAward = props.deserializeAward
     ? props.deserializeAward
     : (award) => ({
-        title: award?.title_l10n,
-        number: award.number,
-        funder: award.funder ?? '',
-        id: award.id,
-        ...(award.identifiers && { identifiers: award.identifiers }),
-        ...(award.acronym && { acronym: award.acronym }),
-      });
+      title: award?.title_l10n,
+      number: award.number,
+      funder: award.funder ?? '',
+      id: award.id,
+      ...(award.identifiers && { identifiers: award.identifiers }),
+      ...(award.acronym && { acronym: award.acronym }),
+    });
 
   const deserializeFunder = props.deserializeFunder
     ? props.deserializeFunder
     : (funder) => ({
-        id: funder.id,
-        name: funder.name,
-        ...(funder.pid && { pid: funder.pid }),
-        ...(funder.country && { country: funder.country }),
-        ...(funder.identifiers && { identifiers: funder.identifiers }),
-      });
+      id: funder.id,
+      name: funder.name,
+      ...(funder.pid && { pid: funder.pid }),
+      ...(funder.country && { country: funder.country }),
+      ...(funder.identifiers && { identifiers: funder.identifiers }),
+    });
 
   const computeFundingContents = props.computeFundingContents
     ? props.computeFundingContents
     : (funding) => {
-        let headerContent,
+      let headerContent,
+        descriptionContent = '';
+      let awardOrFunder = 'award';
+      if (funding.award) {
+        headerContent = funding.award.title;
+      }
+
+      if (funding.funder) {
+        const funderName =
+          funding?.funder?.name ??
+          funding.funder?.title ??
+          funding?.funder?.id ??
+          '';
+        descriptionContent = funderName;
+        if (!headerContent) {
+          awardOrFunder = 'funder';
+          headerContent = funderName;
           descriptionContent = '';
-        let awardOrFunder = 'award';
-        if (funding.award) {
-          headerContent = funding.award.title;
         }
+      }
 
-        if (funding.funder) {
-          const funderName =
-            funding?.funder?.name ??
-            funding.funder?.title ??
-            funding?.funder?.id ??
-            '';
-          descriptionContent = funderName;
-          if (!headerContent) {
-            awardOrFunder = 'funder';
-            headerContent = funderName;
-            descriptionContent = '';
-          }
-        }
-
-        return { headerContent, descriptionContent, awardOrFunder };
-      };
+      return { headerContent, descriptionContent, awardOrFunder };
+    };
   return (
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={HTML5Backend} context={window}>
       <Form.Field required={required}>
         <FieldLabel
           htmlFor={fieldPath}
