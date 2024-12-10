@@ -267,7 +267,7 @@ class ManagedIdentifierComponent extends Component {
         </Form.Group>
         {/*use our own help text*/}
         {/*{helpText && <label className="helptext">{helpText}</label>}*/}
-        {identifier ? <label className="helptext">The above DOI has been reserved with OSTI and will be registered when your upload is published</label> : <label className="helptext">Reserve a DOI by pressing the button (e.g to include it in publications). The DOI is registered when your upload is published</label>}
+        {identifier ? <label className="helptext">The above DOI has been reserved with OSTI and will be registered when your upload is published</label> : <label className="helptext">Reserve a DOI by pressing the button (e.g to include it in publications). The DOI is registered within 24 hours of when your upload is published</label>}
       </>
     );
   }
