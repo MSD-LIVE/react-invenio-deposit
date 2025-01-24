@@ -38,10 +38,13 @@ class PublishButtonComponent extends Component {
   };
 
   isDisabled = (values, isSubmitting, numberOfFiles) => {
-    const filesEnabled = _get(values, 'files.enabled', false);
-    const filesMissing = filesEnabled && !numberOfFiles;
-    return isSubmitting || filesMissing;
+    return true;
   };
+  // isDisabled = (values, isSubmitting, numberOfFiles) => {
+  //   const filesEnabled = _get(values, 'files.enabled', false);
+  //   const filesMissing = filesEnabled && !numberOfFiles;
+  //   return isSubmitting || filesMissing;
+  // };
 
   render() {
     const {
