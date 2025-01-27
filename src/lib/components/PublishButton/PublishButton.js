@@ -37,14 +37,11 @@ class PublishButtonComponent extends Component {
     this.closeConfirmModal();
   };
 
-  isDisabled = (values, isSubmitting, numberOfFiles) => {
-    return true;
+ isDisabled = (values, isSubmitting, numberOfFiles) => {
+    const filesEnabled = _get(values, 'files.enabled', false);
+    const filesMissing = filesEnabled && !numberOfFiles;
+    return isSubmitting || filesMissing;
   };
-  // isDisabled = (values, isSubmitting, numberOfFiles) => {
-  //   const filesEnabled = _get(values, 'files.enabled', false);
-  //   const filesMissing = filesEnabled && !numberOfFiles;
-  //   return isSubmitting || filesMissing;
-  // };
 
   render() {
     const {
