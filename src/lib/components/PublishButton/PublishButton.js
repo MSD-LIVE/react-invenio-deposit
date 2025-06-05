@@ -38,9 +38,9 @@ class PublishButtonComponent extends Component {
   };
 
   isDisabled = (values, isSubmitting, numberOfFiles) => {
-    // const filesEnabled = _get(values, 'files.enabled', false);
-    // const filesMissing = filesEnabled && !numberOfFiles;
-    // return isSubmitting || filesMissing;
+    const filesEnabled = _get(values, 'files.enabled', false);
+    const filesMissing = filesEnabled && !numberOfFiles;
+    return isSubmitting || filesMissing;
     return true;
   };
 
@@ -112,13 +112,6 @@ class PublishButtonComponent extends Component {
             </Modal.Actions>
           </Modal>
         )}
-        <Message visible warning>
-          <p>
-            <Icon name="warning sign" />
-            Publishing records is temporarily disabled due to a service outage with OSTI, which handles DOI minting.
-            We’ll restore publishing functionality as soon as the issue is resolved. Thank you for your patience.
-          </p>
-        </Message>
       </>
     );
   }

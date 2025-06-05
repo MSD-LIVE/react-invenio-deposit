@@ -138,7 +138,7 @@ class ManagedUnmanagedSwitch extends Component {
             label={"I do not need a DOI"}
             name="radioGroup"
             value="managed"
-            disabled={true}
+            disabled={disabled}
             checked={this.state.selectedRadio === 'managed'}
             onChange={this.handleChange}
           />
@@ -148,7 +148,7 @@ class ManagedUnmanagedSwitch extends Component {
             label={'I have a DOI already'}
             name="radioGroup"
             value="unmanaged"
-            disabled={true}
+            disabled={disabled}
             checked={this.state.selectedRadio === 'unmanaged'}
             onChange={this.handleChange}
           />
@@ -158,19 +158,12 @@ class ManagedUnmanagedSwitch extends Component {
             label={'I need a DOI'}
             name="radioGroup"
             value="need"
-            disabled={true}
+            disabled={disabled}
             checked={this.state.selectedRadio === 'need'}
             onChange={this.handleChange}
           />
         </Form.Field>
       </Form.Group>
-      <Message visible warning>
-        <p>
-          <Icon name="warning sign" />
-          DOI's are temporarily disabled due to a service outage with OSTI, which handles DOI minting.
-          We’ll restore publishing functionality as soon as the issue is resolved. Thank you for your patience.
-        </p>
-      </Message>
     </>);
   }
 }
