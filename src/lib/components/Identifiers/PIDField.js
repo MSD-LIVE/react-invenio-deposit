@@ -22,6 +22,7 @@ import {
   DepositFormSubmitContext,
 } from '../../DepositFormSubmitContext';
 import { DISCARD_PID_STARTED, RESERVE_PID_STARTED } from '../../state/types';
+import { Icon, Message } from "semantic-ui-react";
 
 const PROVIDER_EXTERNAL = 'external';
 const UPDATE_PID_DEBOUNCE_MS = 200;
@@ -121,17 +122,18 @@ class ManagedUnmanagedSwitch extends Component {
 
   handleChange = (e, { value }) => {
     const { onManagedUnmanagedChange } = this.props;
-    const isManagedSelected = (value === 'managed' || value === 'need' );
+    const isManagedSelected = (value === 'managed' || value === 'need');
     onManagedUnmanagedChange(isManagedSelected, value);
-    this.setState({selectedRadio: value})
+    this.setState({ selectedRadio: value })
   };
 
   render() {
     const { disabled, isManagedSelected, pidLabel } = this.props;
 
-    return (
+
+    return (<>
       <Form.Group >
-        <Form.Field style={{marginBottom: "0rem"}}>
+        <Form.Field style={{ marginBottom: "0rem" }}>
           <Radio
             label={"I do not need a DOI"}
             name="radioGroup"
@@ -141,7 +143,7 @@ class ManagedUnmanagedSwitch extends Component {
             onChange={this.handleChange}
           />
         </Form.Field>
-        <Form.Field style={{marginBottom: "0rem"}}>
+        <Form.Field style={{ marginBottom: "0rem" }}>
           <Radio
             label={'I have a DOI already'}
             name="radioGroup"
@@ -151,7 +153,7 @@ class ManagedUnmanagedSwitch extends Component {
             onChange={this.handleChange}
           />
         </Form.Field>
-        <Form.Field style={{marginBottom: "0rem"}}>
+        <Form.Field style={{ marginBottom: "0rem" }}>
           <Radio
             label={'I need a DOI'}
             name="radioGroup"
@@ -162,7 +164,7 @@ class ManagedUnmanagedSwitch extends Component {
           />
         </Form.Field>
       </Form.Group>
-    );
+    </>);
   }
 }
 
@@ -258,7 +260,7 @@ class ManagedIdentifierComponent extends Component {
           {/*  </Form.Field>*/}
           {/*)}*/}
           {hasIdentifier &&
-            <Form.Field style={{marginBottom: "0rem"}}>
+            <Form.Field style={{ marginBottom: "0rem" }}>
               <label>{identifier}</label>
             </Form.Field>
           }
@@ -338,7 +340,7 @@ class UnmanagedIdentifierCmp extends Component {
     const fieldError = getFieldErrors(form, fieldPath);
     return (
       <>
-        <Form.Field width={8} error={fieldError} style={{marginBottom: "2rem"}}>
+        <Form.Field width={8} error={fieldError} style={{ marginBottom: "2rem" }}>
           <Form.Input
             onChange={(e, { value }) => this.onChange(value)}
             value={localIdentifier}
@@ -445,53 +447,53 @@ class CustomPIDField extends Component {
           <FieldLabel htmlFor={fieldPath} icon={pidIcon} label={fieldLabel} />
 
 
-        {this.canBeManagedAndUnmanaged && (
-          <ManagedUnmanagedSwitch
-            disabled={isEditingPublishedRecord || hasManagedIdentifier}
-            isManagedSelected={_isManagedSelected}
-            onManagedUnmanagedChange={(userSelectedManaged, selectedRadio) => {
-              if (userSelectedManaged) {
-                form.setFieldValue('pids', {});
-              } else {
-                this.onExternalIdentifierChanged('');
-              }
-              this.setState({
-                isManagedSelected: userSelectedManaged,
-                selectedRadio
-              });
-            }}
-            pidLabel={pidLabel}
-            hasManagedIdentifier={hasManagedIdentifier}
-          />
-        )}
+          {this.canBeManagedAndUnmanaged && (
+            <ManagedUnmanagedSwitch
+              disabled={isEditingPublishedRecord || hasManagedIdentifier}
+              isManagedSelected={_isManagedSelected}
+              onManagedUnmanagedChange={(userSelectedManaged, selectedRadio) => {
+                if (userSelectedManaged) {
+                  form.setFieldValue('pids', {});
+                } else {
+                  this.onExternalIdentifierChanged('');
+                }
+                this.setState({
+                  isManagedSelected: userSelectedManaged,
+                  selectedRadio
+                });
+              }}
+              pidLabel={pidLabel}
+              hasManagedIdentifier={hasManagedIdentifier}
+            />
+          )}
 
-        {(selectedRadio == 'need' || hasManagedIdentifier) && canBeManaged && _isManagedSelected && (
-          <ManagedIdentifierCmp
-            disabled={isEditingPublishedRecord}
-            btnLabelDiscardPID={btnLabelDiscardPID}
-            btnLabelGetPID={btnLabelGetPID}
-            form={form}
-            identifier={managedIdentifier}
-            helpText={managedHelpText}
-            pidPlaceholder={pidPlaceholder}
-            pidType={pidType}
-            pidLabel={pidLabel}
-          />
-        )}
+          {(selectedRadio == 'need' || hasManagedIdentifier) && canBeManaged && _isManagedSelected && (
+            <ManagedIdentifierCmp
+              disabled={isEditingPublishedRecord}
+              btnLabelDiscardPID={btnLabelDiscardPID}
+              btnLabelGetPID={btnLabelGetPID}
+              form={form}
+              identifier={managedIdentifier}
+              helpText={managedHelpText}
+              pidPlaceholder={pidPlaceholder}
+              pidType={pidType}
+              pidLabel={pidLabel}
+            />
+          )}
 
-        {canBeUnmanaged && !_isManagedSelected && (
-          <UnmanagedIdentifierCmp
-            identifier={unmanagedIdentifier}
-            onIdentifierChanged={(identifier) => {
-              this.onExternalIdentifierChanged(identifier);
-            }}
-            form={form}
-            fieldPath={fieldPath}
-            pidPlaceholder={pidPlaceholder}
-            helpText={unmanagedHelpText}
-          />
-        )}
-          </Form.Field>
+          {canBeUnmanaged && !_isManagedSelected && (
+            <UnmanagedIdentifierCmp
+              identifier={unmanagedIdentifier}
+              onIdentifierChanged={(identifier) => {
+                this.onExternalIdentifierChanged(identifier);
+              }}
+              form={form}
+              fieldPath={fieldPath}
+              pidPlaceholder={pidPlaceholder}
+              helpText={unmanagedHelpText}
+            />
+          )}
+        </Form.Field>
       </>
     );
   }
